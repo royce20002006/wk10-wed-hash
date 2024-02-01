@@ -18,29 +18,38 @@ class HashTable {
 
   hash(key) {
     let hashed = sha256(key)
-    
-    let eight = hashed.slice(0,8);
-    
+
+    let eight = hashed.slice(0, 8);
+
     let int = parseInt(eight, 16);
-    
+
     return int;
   }
 
   hashMod(key) {
-    
+
     return this.hash(key) % this.capacity;
   }
 
   insertNoCollisions(key, value) {
-    // Your code here 
+    let hash = new KeyValuePair(key, value)
+    let index = this.hashMod(key);
+    if (!this.data[index]) {
+      this.data[index] = hash;
+      this.count++;
+    } else {
+      throw new Error("hash collision or same key/value pair already exists!")
+    }
+
+    return this.data;
   }
 
   insertWithHashCollisions(key, value) {
-    // Your code here 
+    // Your code here
   }
 
   insert(key, value) {
-    // Your code here 
+    // Your code here
   }
 
 }
