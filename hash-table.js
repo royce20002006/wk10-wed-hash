@@ -60,6 +60,7 @@ class HashTable {
   }
 
   insert(key, value) {
+    let hash = new KeyValuePair(key, value);
     let index = this.hashMod(key);
     if (this.data[index]) {
       let current = this.data[index];
@@ -71,7 +72,6 @@ class HashTable {
         current = current.next;
       }
     }
-    let hash = new KeyValuePair(key, value);
     hash.next = this.data[index]
     this.data[index] = hash;
     this.count++;
