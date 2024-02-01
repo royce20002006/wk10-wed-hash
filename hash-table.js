@@ -60,7 +60,36 @@ class HashTable {
   }
 
   insert(key, value) {
-    // Your code here
+    let hash = new KeyValuePair(key, value);
+    let index = this.hashMod(key);
+    if (!this.data[index]) {
+      this.data[index] = hash;
+      this.count++;
+      
+    } else {
+
+      let current = this.data[index];
+      let prev;
+      while(current) {
+        console.log('q')
+        if(current.key === key) {
+          console.log('iiiiii')
+          current.value = value;
+          break;
+        } else {
+          console.log('jjjjjjjj')
+          hash.next = this.data[index];
+          this.data[index] = hash;
+
+        }
+        
+        current = current.next
+      }
+      this.count++;
+      return this.data;
+
+
+    }
   }
 
 }
